@@ -4,7 +4,7 @@ This package installs a global `synchronized` function into your Laravel applica
 
 So if your application receives ten requests in parallel, and part of your code is wrapped in the `synchronized` function, that block will be executed sequentially.
 
-## Requirements
+## Requires a supported cache driver
 
 This function uses the Cache Atomic Locks feature of Laravel. To utilize this feature, your application must be using the `memcached`, `redis`, `dynamodb`, `database`, or `file` cache driver as your application's default cache driver. In addition, if relevant, all web servers must be communicating with the same central cache server.
 

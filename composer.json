@@ -1,0 +1,61 @@
+{
+    "name": "freerkminnema/synchronized",
+    "description": "A Laravel package that provides a `synchronized` function that can run a critical section of code using atomic locks.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Freerk Minnema",
+            "email": "freerk.minnema@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/cache": "^10.0|^11.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.18",
+        "orchestra/pest-plugin-testbench": "^3.1",
+        "orchestra/testbench": "^9.6",
+        "pestphp/pest": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "FreerkMinnema\\Synchronized\\": "src"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FreerkMinnema\\Synchronized\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "@php vendor/bin/pint --ansi"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

@@ -1,11 +1,11 @@
 # `synchronized()` for Laravel
 
-This package installs a global `synchronized` function into your Laravel application that ensures that the given callback is only executed one at a time.
+This package installs a global `synchronized` function into your Laravel application that ensures that the given callable is always executed one at a time, even if multiple requests are coming in.
 
-So if your application receives ten requests in parallel, and part of that code is wrapped in the `synchronized` function, that part of the code will be executed sequentially.
+So if your application receives ten requests in parallel, and part of your code is wrapped in the `synchronized` function, that block will be executed sequentially.
 
 > [!IMPORTANT]
-> This function uses the Cache Atomic Locks feature of Laravel. As per the Laravel documentation — to utilize this feature, your application must be using the `memcached`, `redis`, `dynamodb`, `database`, `file`, or `array` cache driver as your application's default cache driver. In addition, all servers must be communicating with the same central cache server.
+> This function uses the Cache Atomic Locks feature of Laravel. As per the Laravel documentation — to utilize this feature, your application must be using the `memcached`, `redis`, `dynamodb`, `database`, or `file` cache driver as your application's default cache driver. Technically the `array` driver works, but since this cache is not shared between requests it doesn't help our case. In addition, if relevant, all web servers must be communicating with the same central cache server.
 
 ## Example usage
 

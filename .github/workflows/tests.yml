@@ -39,11 +39,13 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: pcntl, pdo, sqlite, pdo_sqlite
+          ini-values: error_reporting=E_ALL
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "pestphp/pest:${{ matrix.pest }}" "orchestra/testbench:${{ matrix.testbench }}" "orchestra/pest-plugin-testbench:${{ matrix.pest-plugin-testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer require "pestphp/pest:${{ matrix.pest }}" "orchestra/testbench:${{ matrix.testbench }}" "orchestra/pest-plugin-testbench:${{ matrix.pest-plugin-testbench }}" --dev --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests

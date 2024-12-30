@@ -32,7 +32,7 @@ it('works concurrently', function () {
         $status = null;
         pcntl_waitpid($pid, $status);
         if (pcntl_wifexited($status)) {
-            $results[$pid] = pcntl_wexitstatus($status);
+            $results[] = pcntl_wexitstatus($status);
         }
     }
     expect($results)->toEqualCanonicalizing(range(1, 100));

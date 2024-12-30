@@ -30,7 +30,7 @@ In some cases, you may want to provide your own *Atomic Lock Key*. A contrived e
 
 ```php
 $nameOnTicket = Request::get('name-on-ticket');
-$ticket = synchronized(function () use ($ticketColor) {
+$ticket = synchronized(function () use ($nameOnTicket) {
     // This is bad, because everytime $nameOnTicket has a
     // different value, the Atomic Lock Key will be different.
     return [

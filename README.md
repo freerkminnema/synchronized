@@ -22,9 +22,7 @@ This function uses the Cache Atomic Locks feature of Laravel. To utilize this fe
 In its most elegant form, you can pass a simple closure to the `synchronized` function:
 
 ```php
-$ticketNumber = synchronized(
-  static fn () => Cache::increment('ticket-number')
-);
+$ticketNumber = synchronized(fn () => Cache::increment('ticket-number'));
 ```
 
 Since `Cache::increment` is not an atomic operation, you would normally run the risk of returning identical numbers on parallel server requests. But when we wrap it in `synchronized`, we ensure the `Cache::increment` never runs in parallel.
@@ -69,15 +67,11 @@ $ticket = synchronized(function () use ($nameOnTicket) {
 
 Alternatively, you may provide an instance of a saved Eloquent model to use as the *Atomic Lock Key*. This approach means the callback will be executed one at a time for every unique record in your database.
 
-Also, in this case, the instance of the Eloquent model will be passed as the first parameter to the callback.
-
 ```php
 use App\Models\TicketDispenser;
 
-$ticket = synchronized(
-    static fn (TicketDispenser $dispenser) => $dispenser->nextTicket(),
-    TicketDispenser::find(Request::get('ticket-dispenser-id'))
-);
+$dispenser = TicketDispenser::find(Request::get('ticket-dispenser-id'));
+$ticket = synchronized(fn () => $dispenser->nextTicket(), $dispenser);
 ```
 
 ## Use cases

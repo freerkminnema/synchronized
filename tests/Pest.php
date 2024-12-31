@@ -11,7 +11,13 @@
 |
 */
 
-pest()->extend(FreerkMinnema\Synchronized\Tests\TestCase::class)->in('Feature');
+if (function_exists('pest')) {
+    // Pest 3.x
+    pest()->extend(FreerkMinnema\Synchronized\Tests\TestCase::class)->in('Feature');
+} else {
+    // Pest 2.x
+    uses(FreerkMinnema\Synchronized\Tests\TestCase::class)->in('Feature');
+}
 
 /*
 |--------------------------------------------------------------------------

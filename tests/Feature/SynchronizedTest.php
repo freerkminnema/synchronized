@@ -1,6 +1,6 @@
 <?php
 
-use FreerkMinnema\Synchronized\CannotCreateHashWithinEvalException;
+use FreerkMinnema\Synchronized\CannotGenerateAtomicLockKeyException;
 use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Support\Facades\Cache;
 
@@ -42,7 +42,7 @@ it('throws the proper exception when used from eval', function () {
     expect(function () {
         $result = eval('synchronized(fn () => true);');
         dd($result);
-    })->toThrow(CannotCreateHashWithinEvalException::class);
+    })->toThrow(CannotGenerateAtomicLockKeyException::class);
 });
 
 it('throws the proper exception when the lock expires before the callback finishes', function () {

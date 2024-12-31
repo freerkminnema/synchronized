@@ -11,7 +11,7 @@ class HashFromBacktrace
     {
         throw_if(
             str_contains($trace[0]['file'] ?? '', 'eval()\'d code'),
-            CannotCreateHashWithinEvalException::class,
+            CannotGenerateAtomicLockKeyException::class,
         );
 
         $uses = array_map(

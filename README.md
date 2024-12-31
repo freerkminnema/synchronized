@@ -1,4 +1,13 @@
-# `synchronized()` for Laravel
+```
+                      _                     _             _ 
+                     | |                   (_)           | |
+ ___ _   _ _ __   ___| |__  _ __ ___  _ __  _ _______  __| |
+/ __| | | | '_ \ / __| '_ \| '__/ _ \| '_ \| |_  / _ \/ _` |
+\__ \ |_| | | | | (__| | | | | | (_) | | | | |/ /  __/ (_| |
+|___/\__, |_| |_|\___|_| |_|_|  \___/|_| |_|_/___\___|\__,_|
+      __/ |                                                 
+     |___/                                       for Laravel              
+```
 
 This package installs a global `synchronized` function into your Laravel application that ensures that the given callable is always executed one at a time, even if multiple requests are coming in.
 

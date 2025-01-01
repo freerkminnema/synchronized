@@ -73,9 +73,3 @@ use App\Models\TicketDispenser;
 $dispenser = TicketDispenser::find(Request::get('ticket-dispenser-id'));
 $ticket = synchronized(fn () => $dispenser->nextTicket(), $dispenser);
 ```
-
-## Use cases
-
-These are some of the use cases where this function might come in handy:
-
-1. 

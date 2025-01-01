@@ -5,14 +5,14 @@ use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Support\Facades\Cache;
 
 it('works', function () {
-    expect(synchronized(fn () => rand(1, 100)))->toBeBetween(1, 100);
+    expect(synchronized(fn () => 'foo'))->toBe('foo');
 });
 
 it('works with different "uses"', function () {
     $var = 'foo';
-    expect(synchronized(fn () => $var))->toBe($var);
+    expect(synchronized(fn () => $var))->toBe('foo');
     $var = 'bar';
-    expect(synchronized(fn () => $var))->toBe($var);
+    expect(synchronized(fn () => $var))->toBe('bar');
 });
 
 it('works concurrently', function () {

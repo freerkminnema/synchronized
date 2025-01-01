@@ -4,7 +4,7 @@ use FreerkMinnema\Synchronized\CannotGenerateAtomicLockKeyException;
 use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Support\Facades\Cache;
 
-it('works', function () {
+it('returns the result of the callback', function () {
     expect(synchronized(fn () => 'foo'))->toBe('foo');
 });
 

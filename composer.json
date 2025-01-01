@@ -1,6 +1,6 @@
 {
     "name": "freerkminnema/synchronized",
-    "description": "A Laravel package that provides a `synchronized` function that use atomic locks to prevent a critical section of code from ever running in parallel using atomic locks.",
+    "description": "A Laravel package that provides a `synchronized` function that uses atomic locks to prevent a critical section of code from running in parallel across multiple requests.",
     "license": "MIT",
     "authors": [
         {

@@ -17,5 +17,6 @@
     </source>
     <php>
         <env name="CACHE_STORE" value="file"/>
+        <env name="CACHE_DRIVER" value="file"/>
     </php>
 </phpunit>

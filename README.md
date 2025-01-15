@@ -25,8 +25,6 @@ In its most elegant form, you can pass a simple closure to the `synchronized` fu
 $ticketNumber = synchronized(fn () => Cache::increment('ticket-number'));
 ```
 
-Since `Cache::increment` is not an atomic operation, you would normally run the risk of returning identical numbers on parallel server requests. But when we wrap it in `synchronized`, we ensure the `Cache::increment` never runs in parallel.
-
 ## How does it work?
 
 Internally, `synchronized` generates an *Atomic Lock Key* (which is simply a hashed string) based on the location of and variables in the callable. This is just like how the ✨magic✨ `once` function works.

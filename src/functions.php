@@ -20,7 +20,7 @@ if (! function_exists('synchronized')) {
      * @return TReturnType
      * @throws LockTimeoutException
      */
-    function synchronized(callable $callback, string|callable|Model|null $key = null, int $ttl = 60, bool|int $shareResult = false): mixed
+    function synchronized(callable $callback, string|callable|Model|null $key = null, int $ttl = 60, bool|int $shareResult = false, int $sleepFor = 250): mixed
     {
         if (is_null($key)) {
             $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
@@ -37,6 +37,6 @@ if (! function_exists('synchronized')) {
             Cache::forget($key.':result');
         }
 
-        return Cache::lock($key.':lock', $ttl)->block($ttl, $callback);
+        return Cache::lock($key.':lock', $ttl)->betweenBlockedAttemptsSleepFor($sleepFor)->block($ttl, $callback);
     }
 }

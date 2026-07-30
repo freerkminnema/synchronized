@@ -74,7 +74,7 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           composer require "pestphp/pest:${{ matrix.pest }}" "orchestra/testbench:${{ matrix.testbench }}" "orchestra/pest-plugin-testbench:${{ matrix.pest-plugin-testbench }}" --dev --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest --no-blocking
 
       - name: Execute tests
         run: vendor/bin/pest

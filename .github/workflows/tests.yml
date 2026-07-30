@@ -29,6 +29,11 @@ jobs:
             testbench: 11.*
             pest: 4.*
             pest-plugin-testbench: 4.*
+          - php: 8.4
+            laravel: 13.*
+            testbench: 11.*
+            pest: 5.*
+            pest-plugin-testbench: 5.*
 
     name: P${{ matrix.php }} / L${{ matrix.laravel }} / ${{ matrix.dependency-version }}
 
